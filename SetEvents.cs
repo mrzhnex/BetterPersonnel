@@ -9,6 +9,38 @@ namespace BetterPersonnel
     {
         internal void OnWaitingForPlayers()
         {
+            try
+            {
+                Global.IsFullRp = Plugin.Config.GetBool("IsFullRp");
+            }
+            catch (System.Exception ex)
+            {
+                Log.Info("Catch an exception while getting boolean value from config file: " + ex.Message);
+                Global.IsFullRp = false;
+            }
+            try
+            {
+                Global.IsMediumRp = Plugin.Config.GetBool("IsMediumRp");
+            }
+            catch (System.Exception ex)
+            {
+                Log.Info("Catch an exception while getting boolean value from config file: " + ex.Message);
+                Global.IsMediumRp = false;
+            }
+            try
+            {
+                Global.IsLightRp = Plugin.Config.GetBool("IsLightRp");
+            }
+            catch (System.Exception ex)
+            {
+                Log.Info("Catch an exception while getting boolean value from config file: " + ex.Message);
+                Global.IsLightRp = false;
+            }
+
+            Log.Info(nameof(Global.IsFullRp) + ": " + Global.IsFullRp);
+            Log.Info(nameof(Global.IsMediumRp) + ": " + Global.IsMediumRp);
+            Log.Info(nameof(Global.IsLightRp) + ": " + Global.IsLightRp);
+
             Global.CanUseConsoleCommand = false;
         }
 
@@ -73,6 +105,11 @@ namespace BetterPersonnel
                     ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().AddItems.Add(ItemType.Radio);
                 }
+                else if (ev.Player.GetRole() == RoleType.ClassD)
+                {
+                    ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
+                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().AddItems.Add(ItemType.Flashlight);
+                }
             }
         }
 
@@ -86,7 +123,7 @@ namespace BetterPersonnel
                 }
                 if (ev.Door.DoorName.ToLower().Contains("372"))
                 {
-                    if (!accessCards372.Contains(ev.Player.GetCurrentItem().id) || ev.Player.inventory.curItem == ItemType.None)
+                    if (!AccessCards372.Contains(ev.Player.GetCurrentItem().id) || ev.Player.inventory.curItem == ItemType.None)
                     {
                         ev.Allow = false;
                     }
@@ -107,9 +144,16 @@ namespace BetterPersonnel
                     }
                 }
             }
+            if (Global.IsMediumRp)
+            {
+                if (ev.Player.GetCurrentItem().id == ItemType.KeycardChaosInsurgency && ev.Player.inventory.curItem != ItemType.None && ev.Player.GetRole() != RoleType.ChaosInsurgency)
+                {
+                    ev.Allow = false;
+                }
+            }
         }
 
-        private readonly List<ItemType> accessCards372 = new List<ItemType>()
+        private readonly List<ItemType> AccessCards372 = new List<ItemType>()
         {
             ItemType.KeycardContainmentEngineer,
             ItemType.KeycardFacilityManager,
