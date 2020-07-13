@@ -88,27 +88,42 @@ namespace BetterPersonnel
                 if (ev.Player.GetRole() == RoleType.Scp106 || ev.Player.GetRole() == RoleType.Scp096)
                 {
                     ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
-                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 99999;
+                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 99999.9f;
                 }
                 else if (ev.Player.GetRole() == RoleType.NtfCadet || ev.Player.GetRole() == RoleType.NtfLieutenant || ev.Player.GetRole() == RoleType.FacilityGuard)
                 {
                     ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().RemoveItems.Add(ItemType.WeaponManagerTablet);
+                    if (ev.Player.GetRole() == RoleType.FacilityGuard)
+                    {
+                        ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 150.0f;
+                    }
+                    else
+                    {
+                        ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 170.0f;
+                    }
                 }
                 else if (ev.Player.GetRole() == RoleType.NtfScientist)
                 {
                     ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().RemoveItems.Add(ItemType.WeaponManagerTablet);
+                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 170.0f;
                 }
                 else if (ev.Player.GetRole() == RoleType.Scientist)
                 {
                     ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().AddItems.Add(ItemType.Radio);
+                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 120.0f;
                 }
                 else if (ev.Player.GetRole() == RoleType.ClassD)
                 {
                     ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
-                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().AddItems.Add(ItemType.Flashlight);
+                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 120.0f;
+                }
+                else if (ev.Player.GetRole() == RoleType.ChaosInsurgency)
+                {
+                    ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
+                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 170.0f;
                 }
             }
         }
