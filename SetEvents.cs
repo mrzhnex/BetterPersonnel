@@ -125,6 +125,11 @@ namespace BetterPersonnel
                     ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 170.0f;
                 }
+                else if (ev.Player.GetRole() == RoleType.NtfCommander)
+                {
+                    ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
+                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 170.0f;
+                }
             }
         }
 
