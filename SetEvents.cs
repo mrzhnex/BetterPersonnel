@@ -63,6 +63,7 @@ namespace BetterPersonnel
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().RemoveItems.Add(ItemType.KeycardGuard);
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().RemoveItems.Add(ItemType.WeaponManagerTablet);
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().AddItems.Add(ItemType.KeycardSeniorGuard);
+                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 150.0f;
                 }
                 if (ev.Player.GetRole() == RoleType.NtfCadet || ev.Player.GetRole() == RoleType.NtfLieutenant)
                 {
@@ -70,6 +71,7 @@ namespace BetterPersonnel
                         Object.Destroy(ev.Player.gameObject.GetComponent<SetRoleOnSpawn>());
                     ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().RemoveItems.Add(ItemType.WeaponManagerTablet);
+                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 170.0f;
                 }
                 if (ev.Player.GetRole() == RoleType.ChaosInsurgency)
                 {
@@ -77,6 +79,14 @@ namespace BetterPersonnel
                         Object.Destroy(ev.Player.gameObject.GetComponent<SetRoleOnSpawn>());
                     ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().AddItems.Add(ItemType.Radio);
+                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 170.0f;
+                }
+                if (ev.Player.GetRole() == RoleType.NtfCommander || ev.Player.GetRole() == RoleType.NtfLieutenant)
+                {
+                    if (ev.Player.gameObject.GetComponent<SetRoleOnSpawn>())
+                        Object.Destroy(ev.Player.gameObject.GetComponent<SetRoleOnSpawn>());
+                    ev.Player.gameObject.AddComponent<SetRoleOnSpawn>();
+                    ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 170.0f;
                 }
             }
             if (Global.IsFullRp)
