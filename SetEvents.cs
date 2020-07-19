@@ -65,7 +65,7 @@ namespace BetterPersonnel
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().AddItems.Add(ItemType.KeycardSeniorGuard);
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 150.0f;
                 }
-                if (ev.Player.GetRole() == RoleType.NtfCadet || ev.Player.GetRole() == RoleType.NtfLieutenant)
+                else if (ev.Player.GetRole() == RoleType.NtfCadet || ev.Player.GetRole() == RoleType.NtfLieutenant)
                 {
                     if (ev.Player.gameObject.GetComponent<SetRoleOnSpawn>())
                         Object.Destroy(ev.Player.gameObject.GetComponent<SetRoleOnSpawn>());
@@ -73,7 +73,7 @@ namespace BetterPersonnel
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().RemoveItems.Add(ItemType.WeaponManagerTablet);
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 170.0f;
                 }
-                if (ev.Player.GetRole() == RoleType.ChaosInsurgency)
+                else if (ev.Player.GetRole() == RoleType.ChaosInsurgency)
                 {
                     if (ev.Player.gameObject.GetComponent<SetRoleOnSpawn>())
                         Object.Destroy(ev.Player.gameObject.GetComponent<SetRoleOnSpawn>());
@@ -81,7 +81,7 @@ namespace BetterPersonnel
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().AddItems.Add(ItemType.Radio);
                     ev.Player.gameObject.GetComponent<SetRoleOnSpawn>().MaxHealth = 170.0f;
                 }
-                if (ev.Player.GetRole() == RoleType.NtfCommander || ev.Player.GetRole() == RoleType.NtfLieutenant)
+                else if (ev.Player.GetRole() == RoleType.NtfCommander || ev.Player.GetRole() == RoleType.NtfScientist)
                 {
                     if (ev.Player.gameObject.GetComponent<SetRoleOnSpawn>())
                         Object.Destroy(ev.Player.gameObject.GetComponent<SetRoleOnSpawn>());
