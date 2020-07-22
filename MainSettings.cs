@@ -4,8 +4,8 @@ namespace BetterPersonnel
 {
     public class MainSettings : Plugin
     {
-        public override string getName => "BetterPersonnel";
-        private SetEvents SetEvents;
+        public override string getName => nameof(BetterPersonnel);
+        public SetEvents SetEvents { get; set; }
 
         public override void OnEnable()
         {

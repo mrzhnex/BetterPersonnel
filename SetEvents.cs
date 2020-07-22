@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BetterPersonnel
 {
-    internal class SetEvents
+    public class SetEvents
     {
         internal void OnWaitingForPlayers()
         {
