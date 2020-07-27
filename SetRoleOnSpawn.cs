@@ -1,6 +1,5 @@
-﻿using EXILED.Extensions;
+﻿using Exiled.API.Features;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace BetterPersonnel
@@ -8,15 +7,15 @@ namespace BetterPersonnel
     public class SetRoleOnSpawn : MonoBehaviour
     {
         private float Timer = 0.0f;
-        private ReferenceHub PlayerHub;
+        private Player PlayerHub;
 
         public List<ItemType> RemoveItems = new List<ItemType>();
         public List<ItemType> AddItems = new List<ItemType>();
-        public float MaxHealth = 0;
+        public int MaxHealth = 0;
 
         public void Start()
         {
-            PlayerHub = Player.GetPlayer(gameObject);
+            PlayerHub = Player.Get(gameObject);
         }
 
         public void Update()
@@ -27,10 +26,10 @@ namespace BetterPersonnel
             {
                 foreach (ItemType itemType in RemoveItems)
                 {
-                    for (int i = 0; i < PlayerHub.inventory.items.Count; i++)
+                    for (int i = 0; i < PlayerHub.Inventory.items.Count; i++)
                     {
-                        if (PlayerHub.inventory.items[i].id == itemType)
-                            PlayerHub.inventory.items.Remove(PlayerHub.inventory.items[i]);
+                        if (PlayerHub.Inventory.items[i].id == itemType)
+                            PlayerHub.Inventory.items.Remove(PlayerHub.Inventory.items[i]);
                     }
                 }
                 foreach (ItemType itemType in AddItems)
@@ -39,8 +38,8 @@ namespace BetterPersonnel
                 }
                 if (MaxHealth != 0)
                 {
-                    PlayerHub.SetMaxHealth(MaxHealth);
-                    PlayerHub.SetHealth(MaxHealth);
+                    PlayerHub.MaxHealth = MaxHealth;
+                    PlayerHub.Health = MaxHealth;
                 }
                 Destroy(GetComponent<SetRoleOnSpawn>());
             }
